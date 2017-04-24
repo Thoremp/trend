@@ -3,15 +3,16 @@
 from lxml import etree
 import urllib
 import urllib2
-import trendUtil
+import usa_trendUtil
 import re
+from multiprocessing.dummy import Pool
 
 # 解析单页url 返回一页的23条结果
-def getSingleHtml(url):
+def getSingleHtml(selector):
     '解析单页url'
-    req = urllib.urlopen(url)
-    html = req.read()
-    selector = etree.HTML(html)
+    # req = urllib.urlopen(url)
+    # html = req.read()
+    # selector = etree.HTML(html)
 
     # 每页招聘数量
     count = selector.xpath('//*[@id="resultsWrapper"]/div')
@@ -20,7 +21,7 @@ def getSingleHtml(url):
     # 存储一页的数据
     results = []
 
-    for i in range(1,count):
+    for i in range(1, count + 1):
 
         result = []
         try:
@@ -51,42 +52,51 @@ def getSingleHtml(url):
             results.append(result)
         except:
             continue
-            print u'解析url失败'
-        else:
-            print u'解析url成功'
 
     return results
 
 # 获取所有页码的url 入参:url urls(数组)
-def getPageUrls(url, pageurls):
-    print "当页:" + url
-    pageurls.append(url)
+def getPageUrls(url):
+
+    print u'开始保存:' + url
+
     try:
         req = urllib2.urlopen(url)
         html = req.read()
+        selector = etree.HTML(html)
     except:
-        return pageurls
+        print u'解析url出现问题:' + url
     else:
 
-        selector = etree.HTML(html)
+
+        '''保存当页数据 start'''
+        try:
+            results = getSingleHtml(selector)
+            if results:
+                for res in results:
+                    usa_trendUtil.saveMessage(res)
+        except:
+            print u'保存失败:' + url
+        else:
+            print u'保存成功:' + url
+        '''保存当页数据 end'''
+
         try:
             href = selector.xpath('/html/head/link[@rel="next"]/@href')
         except:
-            return pageurls
+            print u'解析下一页出现问题:' + url
         else:
             if href:
                 # 还有下一页
                 url = href[0]
-                print "下一页:" + url
-                getPageUrls(url, pageurls)
-    return pageurls
+                getPageUrls(url)
 
 # 获取所有分类 出参:所有分类url
 def getAllUrls():
     '获取所有分类'
     url = 'https://www.monster.com/jobs/search/?q='
     params = ['Python','Java','Hardware','IOS','Android','integrated-circuit','PHP','C++',
-            'test-engineer','Embedded','Network','Database','C#','Communications']
+            'test-engineer','Embedded','Network','Database','C#','Communications','Linux']
     urls = []
     for each in params:
         e = url + each
@@ -94,11 +104,8 @@ def getAllUrls():
     return urls
 
 if __name__ == '__main__':
-    urls = ['https://www.monster.com/jobs/search/?q=Python&page=2',
-            'https://www.monster.com/jobs/search/?q=Python&page=3',
-            'https://www.monster.com/jobs/search/?q=Python&page=4']
-    for url in urls:
-        results = getSingleHtml(url)
-        for each in results:
-            print each
-        break
+    urls = getAllUrls()
+    pool = Pool()
+    pool.map(getPageUrls, urls)
+    pool.close()
+    pool.join()

@@ -5,11 +5,8 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 import cn_htmllist
-import urllib
-from lxml import etree
 import MySQLdb
 import re
-import time
 from DBUtils.PooledDB import PooledDB # 创建数据库连接池
 pool = PooledDB(MySQLdb, 10, host='120.25.103.83',user='root',passwd='Astarmo826@',db='trend',port=3306,charset='utf8') #5为连接
 # pool = PooledDB(MySQLdb,5,host='localhost',user='root',passwd='123456',db='trend',port=3306,charset='utf8') #5为连接
@@ -30,15 +27,7 @@ def saveTrendBasis(item):
         values(now(),0,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
     '''
 
-    # for each in item:
-    #     print each
-
     cur.execute(sql, item)
-
-    # cur.execute(sql,(item[0],item[1],item[2],item[3],item[4],
-    #                  item[5],item[6],item[7],item[8],item[9],
-    #                  item[10],item[11],item[12],item[13],item[14],
-    #                  item[15]))
 
     cur.close()
     conn.commit()

@@ -1,5 +1,28 @@
 # coding=utf-8
 
+import MySQLdb
+from DBUtils.PooledDB import PooledDB
+pool = PooledDB(MySQLdb, 10, host='120.25.103.83',user='root',passwd='Astarmo826@',db='trend',port=3306,charset='utf8') #5为连接
+
+# 持久化 trend_usa 一条记录
+# 入参:result 数组
+def saveMessage(result):
+    conn = pool.connection()
+    cur = conn.cursor()
+
+    sql = '''
+        insert into trend_basis_usa(addTime,deleteStatus,recruitUrl,title,companyUrl,companyName,address,releaseDate)
+        values(now(), 0, %s,%s,%s,%s,%s,%s)
+    '''
+    cur.execute(sql, result)
+
+    cur.close()
+    conn.commit()
+    conn.close()
+
+
+
+
 html = """
 
 <!DOCTYPE html>

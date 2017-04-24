@@ -2,12 +2,10 @@
 
 import urllib
 from lxml import etree
-import cn_htmllist
 import cn_trendUtil
 import re
 import time
 import sys
-import logging
 from multiprocessing.dummy import Pool
 reload(sys)
 sys.setdefaultencoding('utf-8')

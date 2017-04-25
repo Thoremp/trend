@@ -20,7 +20,18 @@ def saveMessage(result):
     conn.commit()
     conn.close()
 
+# 根据 recruitUrl 查询 trend_basis_usa 中的数据(是否存在)
+def isHaveRecruitUrl(recruitUrl):
+    conn = pool.connection()
+    cur = conn.cursor()
 
+    sql = "select * from trend_basis_usa where 1=%s and recruitUrl=%s"
+    count = cur.execute(sql, (1,recruitUrl))
+
+    cur.close()
+    conn.commit()
+    conn.close()
+    return count
 
 
 html = """

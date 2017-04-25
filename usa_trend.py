@@ -5,6 +5,7 @@ import urllib
 import urllib2
 import usa_trendUtil
 import re
+import time
 from multiprocessing.dummy import Pool
 
 # 解析单页url 返回一页的23条结果
@@ -58,7 +59,7 @@ def getSingleHtml(selector):
 # 获取所有页码的url 入参:url urls(数组)
 def getPageUrls(url):
 
-    print u'开始保存:' + url
+    print u'开始保存:' + url + u' - ' + time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
 
     try:
         req = urllib2.urlopen(url)
@@ -74,7 +75,14 @@ def getPageUrls(url):
             results = getSingleHtml(selector)
             if results:
                 for res in results:
-                    usa_trendUtil.saveMessage(res)
+                    print u'正在保存:' + res[0]
+                    # 保存之前先检查数据库是否存在这条数据,如果不存在方可保存
+                    count = usa_trendUtil.isHaveRecruitUrl(res[0])
+                    if(count != 0):
+                        usa_trendUtil.saveMessage(res)
+                    else:
+                        print u'数据库已存在此数据' + res[0]
+                        continue
         except:
             print u'保存失败:' + url
         else:

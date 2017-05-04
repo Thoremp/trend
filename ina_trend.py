@@ -4,13 +4,13 @@ import urllib
 from lxml import etree
 import re
 import time
-import jp_trendUtil
+import ina_trendUtil
 
 # 解析单页
 def getSinglePage(url):
     req = urllib.urlopen(url)
     html = req.read()
-    html = jp_trendUtil.html
+    html = ina_trendUtil.html
     selector = etree.HTML(html)
     divs = selector.xpath('//*[@id="200217000593"]/a/ul/li/text()')
     divs = selector.xpath('//div[@itemtype="http://schema.org/JobPosting"]')

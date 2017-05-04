@@ -80,6 +80,7 @@ def getPageUrls(url):
                     count = usa_trendUtil.isHaveRecruitUrl(res[0])
                     if(count != 0):
                         usa_trendUtil.saveMessage(res)
+                        print u'保存成功:' + res[0]
                     else:
                         print u'数据库已存在此数据' + res[0]
                         continue

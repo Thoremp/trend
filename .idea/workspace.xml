@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="46b6c2e0-185a-47a3-9906-d2f283a46adc" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ina_trend.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ina_trendUtil.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/usa_trend.py" afterPath="$PROJECT_DIR$/usa_trend.py" />
-    </list>
+    <list default="true" id="46b6c2e0-185a-47a3-9906-d2f283a46adc" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,8 +18,8 @@
       <file leaf-file-name="usa_trend.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/usa_trend.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="105" column="11" lean-forward="true" selection-start-line="105" selection-start-column="11" selection-end-line="105" selection-end-column="34" />
+            <state relative-caret-position="185">
+              <caret line="107" column="80" lean-forward="false" selection-start-line="107" selection-start-column="66" selection-end-line="107" selection-end-column="80" />
               <folding>
                 <element signature="e#204#1464#0" expanded="false" />
                 <element signature="e#1522#2725#0" expanded="false" />
@@ -304,7 +299,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14732143" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -359,7 +354,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#15#28#0" expanded="true" />
+            <element signature="e#15#28#0" expanded="false" />
             <element signature="e#131#942#0" expanded="false" />
             <element signature="e#977#1315#0" expanded="false" />
           </folding>
@@ -390,7 +385,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#15#28#0" expanded="true" />
+            <element signature="e#15#28#0" expanded="false" />
             <element signature="e#131#942#0" expanded="false" />
             <element signature="e#977#1315#0" expanded="false" />
           </folding>
@@ -428,7 +423,7 @@
         <state relative-caret-position="88">
           <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding>
-            <element signature="e#15#28#0" expanded="true" />
+            <element signature="e#15#28#0" expanded="false" />
             <element signature="e#131#942#0" expanded="false" />
             <element signature="e#977#1315#0" expanded="false" />
           </folding>
@@ -465,7 +460,7 @@
         <state relative-caret-position="88">
           <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding>
-            <element signature="e#15#28#0" expanded="true" />
+            <element signature="e#15#28#0" expanded="false" />
             <element signature="e#131#942#0" expanded="false" />
             <element signature="e#977#1315#0" expanded="false" />
           </folding>
@@ -502,7 +497,7 @@
         <state relative-caret-position="88">
           <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding>
-            <element signature="e#15#28#0" expanded="true" />
+            <element signature="e#15#28#0" expanded="false" />
             <element signature="e#131#942#0" expanded="false" />
             <element signature="e#977#1315#0" expanded="false" />
           </folding>
@@ -614,7 +609,7 @@
         <state relative-caret-position="326">
           <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
           <folding>
-            <element signature="e#15#28#0" expanded="true" />
+            <element signature="e#15#28#0" expanded="false" />
             <element signature="e#131#942#0" expanded="false" />
             <element signature="e#977#1315#0" expanded="false" />
           </folding>
@@ -623,8 +618,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/usa_trend.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="105" column="11" lean-forward="true" selection-start-line="105" selection-start-column="11" selection-end-line="105" selection-end-column="34" />
+        <state relative-caret-position="185">
+          <caret line="107" column="80" lean-forward="false" selection-start-line="107" selection-start-column="66" selection-end-line="107" selection-end-column="80" />
           <folding>
             <element signature="e#204#1464#0" expanded="false" />
             <element signature="e#1522#2725#0" expanded="false" />

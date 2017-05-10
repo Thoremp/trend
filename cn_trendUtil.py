@@ -16,6 +16,24 @@ pool = PooledDB(MySQLdb, 10, host='120.25.103.83',user='root',passwd='Astarmo826
 """
 # 存储爬取的主要数据
 def saveTrendBasis(item):
+
+    # 根据 item 中的 field 从 trend_field 中查询出 小类代码和大类代码 存入数据库
+    conn = pool.connection()
+    cur = conn.cursor()
+    sql = '''
+        select field_number,(select field_number from trend_field tf2 where tf2.id=tf.parent_id ) as parent_id
+        from trend_field tf where 1=%s and field_name=%s
+    '''
+    count = cur.execute(sql, (1,item[11]))
+    result = cur.fetchmany(count)
+
+    cur.close()
+    conn.commit()
+    conn.close()
+    item.append(result[0][0])
+    item.append(result[0][1])
+
+
     conn = pool.connection()
     cur = conn.cursor() # 获取游标
     sql = '''
@@ -23,8 +41,9 @@ def saveTrendBasis(item):
         recruitUrl,title,companyName,companyUrl,salary,
         area,releaseDate,wordNature,workExperience,edu,
         recruitNum,field,companyScale,companyNature,companyIndustry,
-        companyAddress)
-        values(now(),0,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+        companyAddress,field_number,parent_number)
+        values(now(),0,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s
+        ,%s,%s)
     '''
 
     cur.execute(sql, item)

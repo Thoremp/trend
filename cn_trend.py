@@ -5,6 +5,7 @@ from lxml import etree
 import cn_trendUtil
 import re
 import time
+import usa_trend
 import sys
 from multiprocessing.dummy import Pool
 reload(sys)
@@ -229,6 +230,17 @@ def saveInurl(each):
 if __name__ == '__main__':
 
     while 1:
+
+        try:
+            # 先来美国的
+            urls = usa_trend.getAllUrls()
+            pool = Pool()
+            pool.map(usa_trend.getPageUrls, urls)
+            pool.close()
+            pool.join()
+        except:
+            print u"多线程出现错误" + time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
+
         try:
             # 2.解析url(使用多线程)
             result = cn_trendUtil.getUrlBystatus()
@@ -252,10 +264,3 @@ if __name__ == '__main__':
             pool.join()  # join()作用:等待爬取完成以后再回到下面一行代码的执行
         except:
             print u'多线程出现错误 - ' + time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
-
-    # trendUtil.deleteTrendUrl()  # 删除不合格的url
-    # result = trendUtil.getUrlBystatus()
-    # pool = Pool()
-    # pool.map(saveUrl, result)
-    # pool.close()
-    # pool.join()

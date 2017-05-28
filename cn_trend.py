@@ -34,7 +34,7 @@ def getAllUrls():
         urls.append(url)
     return urls
 
-# 获取所有详细信息的url 输出urlIns
+# 获取所有详细信息的url 输出urlIns 获取下一页的url
 def printUrl(url):
 
     print url + " - " + time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
@@ -49,11 +49,7 @@ def printUrl(url):
         secondurl = selector.xpath('//td[@class="zwmc"]/div/a/@href')
 
         for each in secondurl:
-            if each == 'http://xiaoyuan.zhaopin.com/zhuanti/first.html':
-                continue
             if each == 'http://e.zhaopin.com/products/1/detail.do':
-                continue
-            if each == 'http://xiaoyuan.zhaopin.com/first/':
                 continue
             if each[0:27] == 'http://xiaoyuan.zhaopin.com':
                 continue
@@ -81,7 +77,6 @@ def printUrl(url):
 
 # 处理详细信息页,存储数据库
 def saveUrl(each):
-
     each = each[1]
     print "正在保存:" + each + " - " + time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
     # logging.info("正在保存:" + each + " - " + time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())))
@@ -90,25 +85,18 @@ def saveUrl(each):
     result = cn_trendUtil.isBasisByUrl(each)
     if result == 'have':
         print "数据库已存在此数据:" + each
-        # logging.info("数据库已存在此数据:" + each)
     else:
-
         try:
             item = innerHtml(each)
         except:
             print "解析url失败:" + each
-            # logging.info("解析url失败:" + each)
         else:
-
             try:
                 cn_trendUtil.saveTrendBasis(item)  # 存储数据库
             except:
                 print "保存失败:" + each
-                # logging.info("保存失败:" + each)
             else:
                 print "保存成功:" + each
-                # logging.info("保存成功:" + each)
-
     # 在 trend_url 中将此 url 的 status 置为 1
     cn_trendUtil.setStatusByUrl(each)
 
